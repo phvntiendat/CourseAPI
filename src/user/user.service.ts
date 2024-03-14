@@ -1,8 +1,10 @@
 
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
-import { CreateUserDto, LoginUserDto } from './user.dto';
+import { CreateUserDto, LoginUserDto, UpdateUserDto } from './user.dto';
 import { UserRepository } from './user.repository';
+import { User } from "src/user/user.model";
+
 
 @Injectable()
 export class UserService {
@@ -77,5 +79,13 @@ export class UserService {
         }
 
         return user;
+    }
+
+    async getProfile(user: User) {
+        return await this.userRepository.findById(user.id);
+    }
+
+    async updateUserInfo(user: User, dto: UpdateUserDto) {
+        return await this.userRepository.findByIdAndUpdate(user.id, dto);
     }
 }

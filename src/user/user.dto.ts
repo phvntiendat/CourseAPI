@@ -16,3 +16,12 @@ export class LoginUserDto {
     @IsEmail() @IsNotEmpty() email: string;
     @MinLength(6) @IsNotEmpty() password: string;
 }
+
+export class UpdateUserDto {
+    first_name: string;
+    last_name: string;
+    date_of_birth: Date;
+    avatar: string;
+    phone: string;
+    gender: boolean;
+}
